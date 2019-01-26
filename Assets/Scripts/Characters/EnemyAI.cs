@@ -24,6 +24,11 @@ public class EnemyAI : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(direction);
             rb.velocity = direction * speed * Time.deltaTime;
         }
+        else
+        {
+            rb.angularVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
+        }
     }
 
 
