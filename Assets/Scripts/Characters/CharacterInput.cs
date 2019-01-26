@@ -20,8 +20,29 @@ public class CharacterInput : MonoBehaviour
         if (move != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(move);
+            rb.angularVelocity = Vector3.zero;
         }
         rb.velocity = move * speed * Time.deltaTime;
+        
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("House"))
+        {
+            Debug.Log("Plaeyr enters the house");
+
+            isInSafeZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("House"))
+        {
+            Debug.Log("Plaeyr exits the house");
+
+            isInSafeZone = false;
+        }
+    }
 }
