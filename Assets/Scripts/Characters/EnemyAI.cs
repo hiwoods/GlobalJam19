@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,12 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody rb;
 
-    private Transform chaseTarget;
+    private CharacterInput player;
+    private Vector3 moveTarget;
 
-    private Vector3 origin; 
+    private Vector3 origin;
+
+    private Coroutine goBackRoutine;
 
     private void Start()
     {
@@ -20,30 +24,56 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (chaseTarget)
+        if (player && !player.isInSafeZone)
         {
-            var direction = (chaseTarget.position - transform.position).normalized;
-            transform.rotation = Quaternion.LookRotation(direction);
-            rb.velocity = direction * speed * Time.deltaTime;
+            MoveTo(player.transform.position);
+        }
+        else if (moveTarget != Vector3.zero)
+        {
+            MoveTo(moveTarget);
+
+            if (Vector3.Distance(transform.position, origin) < 0.1f)
+            {
+                moveTarget = Vector3.zero;
+            }
         }
         else
         {
             rb.angularVelocity = Vector3.zero;
             rb.velocity = Vector3.zero;
+            if (goBackRoutine == null)
+                goBackRoutine = StartCoroutine(GoingBackToOrigin());
+        }
+
+        void MoveTo(Vector3 position)
+        {
+            var direction = (position - transform.position).normalized;
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+            rb.velocity = direction * speed * Time.deltaTime;
         }
     }
 
+    private IEnumerator GoingBackToOrigin()
+    {
+        yield return new WaitForSeconds(2);
+        
+        if (!player || player.isInSafeZone)
+        {
+            moveTarget = origin;
+        }
+        goBackRoutine = null;
+        yield return null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("chasing player");
-            var player = other.gameObject.GetComponent<CharacterInput>();
-            if (!player.isInSafeZone)
-            {
-                chaseTarget = other.transform;
-            }
+            if (!player)
+                player = other.gameObject.GetComponent<CharacterInput>();
         }
     }
 
@@ -52,11 +82,8 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("chasing player");
-            var player = other.gameObject.GetComponent<CharacterInput>();
-            if (!player.isInSafeZone)
-            {
-                chaseTarget = other.transform;
-            }
+            if (!player)
+                player = other.gameObject.GetComponent<CharacterInput>();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -64,7 +91,7 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("lost player");
-            chaseTarget = null;
+            player = null;
         }
     }
 
