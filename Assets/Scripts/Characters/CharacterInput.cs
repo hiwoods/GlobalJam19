@@ -6,11 +6,12 @@ public class CharacterInput : MonoBehaviour
 {
     public float speed;
     public bool isInSafeZone;
-
+    public bool isAlive = true;
     private Rigidbody rb;
 
     private void Start()
     {
+        isAlive = true;
         rb = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()

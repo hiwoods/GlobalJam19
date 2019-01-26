@@ -27,7 +27,6 @@ public class EnemyAI : MonoBehaviour
         if (player && !player.isInSafeZone)
         {
             MoveTo(player.transform.position);
-            Debug.Log("move to character");
         }
         else if (moveTarget != Vector3.zero)
         {
@@ -85,7 +84,6 @@ public class EnemyAI : MonoBehaviour
             
             if (!player)
             {
-                Debug.Log("chasing player");
                 player = other.gameObject.GetComponent<CharacterInput>();
             }
         }
@@ -94,7 +92,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("lost player");
             player = null;
         }
     }
@@ -103,7 +100,14 @@ public class EnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Kill the player");
+            if (player)
+                player.isAlive = false;
+            else
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInput>();
+                player.isAlive = false;
+            }
+       
         }
     }
 }
