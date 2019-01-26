@@ -6,6 +6,8 @@ public class CharacterInput : MonoBehaviour
 {
     public float speed;
     public float turningSpeed;
+    public bool isInSafeZone;
+
     private Rigidbody rb;
 
     private void Start()

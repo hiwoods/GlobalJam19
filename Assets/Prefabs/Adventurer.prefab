@@ -44,6 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 60
   turningSpeed: 0
+  isInSafeZone: 0
 --- !u!1001 &3066066021260990284
 PrefabInstance:
   m_ObjectHideFlags: 0

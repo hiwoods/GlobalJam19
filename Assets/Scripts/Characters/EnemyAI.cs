@@ -37,8 +37,9 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("chasing player");
-
-            chaseTarget = other.transform;
+            var player = other.gameObject.GetComponent<CharacterInput>();
+            if (!player.isInSafeZone)
+                chaseTarget = other.transform;
         }
     }
 
