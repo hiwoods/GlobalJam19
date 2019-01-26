@@ -667,6 +667,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1285333345}
+    - target: {fileID: 7616545431859637737, guid: 5630f8c5258921f4daebede69c6c16d4,
+        type: 3}
+      propertyPath: m_BindingMode
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5630f8c5258921f4daebede69c6c16d4, type: 3}
 --- !u!1001 &9025277240617176281

@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-
     public float speed = 50;
 
     private Rigidbody rb;
 
     private Transform chaseTarget;
 
+    private Vector3 origin; 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        origin = transform.position;
     }
 
     private void Update()
@@ -39,10 +41,24 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("chasing player");
             var player = other.gameObject.GetComponent<CharacterInput>();
             if (!player.isInSafeZone)
+            {
                 chaseTarget = other.transform;
+            }
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("chasing player");
+            var player = other.gameObject.GetComponent<CharacterInput>();
+            if (!player.isInSafeZone)
+            {
+                chaseTarget = other.transform;
+            }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
