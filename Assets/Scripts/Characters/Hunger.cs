@@ -1,11 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Hunger : MonoBehaviour
 {
-    public float hungerValue = 100;
+    [SerializeField] private float hungerValue = 100;
     public float decayRate = 1;
+
+    public float HungerValue
+    {
+        get => hungerValue;
+        set
+        {
+            hungerValue = Mathf.Clamp(value, 0, 100);
+            OnHungerValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public event EventHandler OnHungerValueChanged;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +29,9 @@ public class Hunger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hungerValue -= decayRate * Time.deltaTime;
+        HungerValue -= decayRate * Time.deltaTime;
 
-        if (hungerValue <= 0)
+        if (HungerValue <= 0)
         {
             Debug.Log("Player dies");
         }
@@ -30,10 +43,10 @@ public class Hunger : MonoBehaviour
         if (other.gameObject.CompareTag("Food"))
         {
             Debug.Log("Player eating food");
-            
-            hungerValue = Mathf.Clamp(hungerValue + 20, 0, 100);
 
+            HungerValue = HungerValue + 20;
             Destroy(other.gameObject);
+
         }
     }
 }
