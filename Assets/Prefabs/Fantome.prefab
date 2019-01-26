@@ -41,7 +41,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.08
+  m_Radius: 10.04
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1843983246
 MonoBehaviour:
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8bfa5400dfcad4a82128c203956d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 160
 --- !u!1001 &9025277240736231405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: e774edf2d37383b46ba40c657b3e2ed6, type: 3}
       propertyPath: m_Name
-      value: fantome
+      value: Fantome
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e774edf2d37383b46ba40c657b3e2ed6, type: 3}
       propertyPath: m_LocalPosition.x

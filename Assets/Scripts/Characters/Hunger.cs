@@ -44,9 +44,13 @@ public class Hunger : MonoBehaviour
         {
             Debug.Log("Player eating food");
 
-            HungerValue = HungerValue + 20;
-            Destroy(other.gameObject);
+            var food = other.gameObject.GetComponent<Food>();
 
+            if (food.IsAvailable)
+            {
+                HungerValue = HungerValue + food.Value;
+                food.Consume();
+            }
         }
     }
 }

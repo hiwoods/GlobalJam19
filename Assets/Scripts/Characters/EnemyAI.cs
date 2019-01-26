@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody rb;
 
-    private CharacterInput player;
+    public CharacterInput player;
     private Vector3 moveTarget;
 
     private Vector3 origin;
@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour
         if (player && !player.isInSafeZone)
         {
             MoveTo(player.transform.position);
+            Debug.Log("move to character");
         }
         else if (moveTarget != Vector3.zero)
         {
@@ -81,9 +82,12 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("chasing player");
+            
             if (!player)
+            {
+                Debug.Log("chasing player");
                 player = other.gameObject.GetComponent<CharacterInput>();
+            }
         }
     }
     private void OnTriggerExit(Collider other)
