@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Hunger : MonoBehaviour
 {
-    [SerializeField] private float hungerValue = 100;
+    public float maxHunger = 100;
+    [SerializeField] private float hungerValue = 80;
     public float decayRate = 1;
 
     public float HungerValue
@@ -13,7 +14,7 @@ public class Hunger : MonoBehaviour
         get => hungerValue;
         set
         {
-            hungerValue = Mathf.Clamp(value, 0, 100);
+            hungerValue = Mathf.Clamp(value, 0, maxHunger);
             OnHungerValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }

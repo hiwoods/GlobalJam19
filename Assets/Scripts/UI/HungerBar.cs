@@ -19,6 +19,8 @@ public class HungerBar : MonoBehaviour
         text = GetComponentInChildren<TextMeshProUGUI>();
         hunger = player.GetComponent<Hunger>();
         hunger.OnHungerValueChanged += OnHungerChanged_EH;
+
+        slider.maxValue = hunger.maxHunger;
     }
 
     private void OnDisable()
