@@ -69,8 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825839cb753f27648bd9d40b136ba33e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerValue: 100
-  decayRate: 1
+  maxHunger: 100
+  hungerValue: 80
+  decayRate: 2
 --- !u!1001 &3066066021260990284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,10 +143,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: c833633411cfc8246a2042470bcdbc32, type: 2}
     - target: {fileID: 400006, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -254,6 +251,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c833633411cfc8246a2042470bcdbc32, type: 2}
     - target: {fileID: 400064, guid: 11de9d883ba29e7408300ad1c2cc424b, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.07965512
