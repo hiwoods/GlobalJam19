@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour
         if (player && !player.isInSafeZone)
         {
             MoveTo(player.transform.position);
+            moveTarget = Vector3.zero;
         }
         else if (moveTarget != Vector3.zero)
         {
