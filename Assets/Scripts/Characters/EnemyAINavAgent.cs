@@ -25,11 +25,11 @@ public class EnemyAINavAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player && !player.isInSafeZone)
+        if (player && !player.IsInSafeZone)
         {
             agent.SetDestination(player.transform.position);
         }
-        else if (!player || player.isInSafeZone)
+        else if (!player || player.IsInSafeZone)
         {
             if (goBackRoutine == null)
                 StartCoroutine(GoingBackToOrigin());
@@ -40,7 +40,7 @@ public class EnemyAINavAgent : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3);
 
-        if (!player || player.isInSafeZone)
+        if (!player || player.IsInSafeZone)
         {
             agent.SetDestination(origin);
         }

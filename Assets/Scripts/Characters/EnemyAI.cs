@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (player && !player.isInSafeZone)
+        if (player && !player.IsInSafeZone)
         {
             MoveTo(player.transform.position);
             moveTarget = Vector3.zero;
@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         
-        if (!player || player.isInSafeZone)
+        if (!player || player.IsInSafeZone)
         {
             moveTarget = origin;
         }

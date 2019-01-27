@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterInput : MonoBehaviour
 {
     public float speed;
-    public bool isInSafeZone;
+    [SerializeField] private bool isInSafeZone;
     [SerializeField] private bool isAlive = true;
     private Rigidbody rb;
 
@@ -15,6 +15,16 @@ public class CharacterInput : MonoBehaviour
         set
         {
             isAlive = value;
+            OnPlayerStateChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public bool IsInSafeZone
+    {
+        get => isInSafeZone;
+        set
+        {
+            isInSafeZone = value;
             OnPlayerStateChanged?.Invoke(this, EventArgs.Empty);
         }
     }
@@ -45,7 +55,7 @@ public class CharacterInput : MonoBehaviour
         {
             Debug.Log("Plaeyr enters the house");
 
-            isInSafeZone = true;
+            IsInSafeZone = true;
         }
     }
 
@@ -55,7 +65,7 @@ public class CharacterInput : MonoBehaviour
         {
             Debug.Log("Plaeyr exits the house");
 
-            isInSafeZone = false;
+            IsInSafeZone = false;
         }
     }
 }
