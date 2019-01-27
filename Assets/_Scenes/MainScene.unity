@@ -14737,6 +14737,11 @@ PrefabInstance:
       propertyPath: decayRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8548703107909829298, guid: b21f2a552e0ae914b960481294c1fb81,
+        type: 3}
+      propertyPath: hungerValue
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b21f2a552e0ae914b960481294c1fb81, type: 3}
 --- !u!4 &1903809038 stripped

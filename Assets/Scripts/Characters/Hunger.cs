@@ -21,10 +21,12 @@ public class Hunger : MonoBehaviour
 
     public event EventHandler OnHungerValueChanged;
 
+
+    private CharacterInput player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<CharacterInput>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class Hunger : MonoBehaviour
 
         if (HungerValue <= 0)
         {
-            Debug.Log("Player dies");
+            player.IsAlive = false;
         }
     }
 
