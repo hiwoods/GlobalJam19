@@ -59,36 +59,24 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator GoingBackToOrigin()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         
         if (!player || player.isInSafeZone)
         {
             moveTarget = origin;
         }
         goBackRoutine = null;
-        yield return null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (!player)
+            if (player == null)
                 player = other.gameObject.GetComponent<CharacterInput>();
         }
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            
-            if (!player)
-            {
-                player = other.gameObject.GetComponent<CharacterInput>();
-            }
-        }
-    }
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -102,11 +90,11 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             if (player)
-                player.isAlive = false;
+                player.IsAlive = false;
             else
             {
                 player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInput>();
-                player.isAlive = false;
+                player.IsAlive = false;
             }
        
         }

@@ -1,21 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI quitButton;
+    public TextMeshProUGUI endGameText;
     public CharacterInput player;
-    
 
-    // Update is called once per frame
-    void Update()
+    private Button btn;
+
+    private void Start()
     {
-        if (!player.isAlive)
+        Time.timeScale = 1f;
+        btn = endGameText.GetComponent<Button>();
+        player.OnPlayerStateChanged += OnPlayerStateChange_EH;
+    }
+
+    private void OnPlayerStateChange_EH(object sender, EventArgs e)
+    {
+        if (!player.IsAlive)
         {
-            text.enabled = true;
+            btn.interactable = true;
+            endGameText.enabled = true;
+            quitButton.enabled = true;
             Time.timeScale = 0;
         }
+    }
+
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

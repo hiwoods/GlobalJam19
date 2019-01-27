@@ -7,7 +7,7 @@ public class Food : MonoBehaviour
 {
     public bool IsAvailable;
     public float Value = 10;
-
+    public float respawnTime = 30f;
     private MeshRenderer renderer;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class Food : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(respawnTime);
 
         IsAvailable = true;
         renderer.enabled = true;

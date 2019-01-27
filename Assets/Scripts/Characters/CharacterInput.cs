@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,19 @@ public class CharacterInput : MonoBehaviour
 {
     public float speed;
     public bool isInSafeZone;
-    public bool isAlive = true;
+    [SerializeField] private bool isAlive = true;
     private Rigidbody rb;
+
+    public bool IsAlive {
+        get => isAlive;
+        set
+        {
+            isAlive = value;
+            OnPlayerStateChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public event EventHandler OnPlayerStateChanged;
 
     private void Start()
     {
