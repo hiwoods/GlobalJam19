@@ -9,12 +9,18 @@ public class CharacterInput : MonoBehaviour
     [SerializeField] private bool isInSafeZone;
     [SerializeField] private bool isAlive = true;
     private Rigidbody rb;
-
-    public bool IsAlive {
+    private AudioSource source;
+    public bool IsAlive
+    {
         get => isAlive;
         set
         {
             isAlive = value;
+
+            if (!isAlive)
+            {
+                source.Stop();
+            }
             OnPlayerStateChanged?.Invoke(this, EventArgs.Empty);
         }
     }
@@ -33,6 +39,7 @@ public class CharacterInput : MonoBehaviour
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         isAlive = true;
         rb = GetComponent<Rigidbody>();
     }
