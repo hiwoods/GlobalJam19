@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterInput : MonoBehaviour
@@ -60,8 +58,6 @@ public class CharacterInput : MonoBehaviour
     {
         if (other.gameObject.CompareTag("House"))
         {
-            Debug.Log("Plaeyr enters the house");
-
             IsInSafeZone = true;
         }
     }
@@ -70,8 +66,6 @@ public class CharacterInput : MonoBehaviour
     {
         if (other.gameObject.CompareTag("House"))
         {
-            Debug.Log("Plaeyr exits the house");
-
             IsInSafeZone = false;
         }
     }

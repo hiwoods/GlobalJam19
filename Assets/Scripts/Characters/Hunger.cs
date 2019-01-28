@@ -45,8 +45,6 @@ public class Hunger : MonoBehaviour
         //handle food
         if (other.gameObject.CompareTag("Food"))
         {
-            Debug.Log("Player eating food");
-
             var food = other.gameObject.GetComponent<Food>();
 
             if (food.IsAvailable)
